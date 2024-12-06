@@ -62,9 +62,11 @@ export const UserProvider=({children})=>{
         }
     }
 
-    const updateUser=async (displayName)=>{
+    const updateUser=async (displayName,photoURL)=>{
         try {
-            await updateProfile(auth.currentUser, {displayName})
+            if(displayName && photoURL) await updateProfile(auth.currentUser, {displayName,photoURL})
+            else if(displayName) await updateProfile(auth.currentUser, {displayName})
+            else if(photoURL)await updateProfile(auth.currentUser, {photoURL})
             setMsg({})
             setMsg({update:"Sikeres módosítás"})
             console.log('siker');

@@ -22,7 +22,6 @@ export const Toastify = ({signin,err,signup, resetPW, update}) => {
             setTimeout(()=>navigate('/auth/in'),1500)
          }else if(update){
           toast.success(update, {position:"top-center"} )
-          setTimeout(()=>navigate('/'),1500)
          }
          setMsg({})
     },[signin,err,signup,resetPW, update])

@@ -19,10 +19,19 @@ import { FaBlog } from "react-icons/fa";
 import { RxAvatar } from "react-icons/rx";
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
+import { useEffect } from 'react';
+import { extractUrlAndId } from '../utility/utils';
 
 export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const {user, logoutUser}=useContext(UserContext)
+    const [avatar, setAvatar] = useState(null)
+
+    useEffect(()=>{
+      user?.photoURL && setAvatar(extractUrlAndId(user.photoURL).url)
+
+    },[user])
+
 
     console.log(user);
     
@@ -69,7 +78,7 @@ export const Header = () => {
 
             <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                    <RxAvatar title={user.displayName}/>
+                    {avatar ? <img className='Myavatar' src={avatar}/> : <RxAvatar title={user.displayName}/>}
                 </DropdownToggle>
             <DropdownMenu end>
 
