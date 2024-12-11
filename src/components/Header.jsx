@@ -55,6 +55,14 @@ export const Header = () => {
                 Posztok
             </NavLink>
           </NavItem>
+          {user && 
+          <NavItem>
+          <NavLink className='nav-link' to='/create'>
+              Új poszt
+          </NavLink>
+        </NavItem>
+          
+          }
         </Nav>
 
         <Nav navbar>

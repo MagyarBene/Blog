@@ -3,7 +3,7 @@ import { Header } from '../components/Header'
 
 export const Posts = () => {
   return (
-    <div className='PostPage'>
+    <div className='page'>
       posts
     </div>
   )

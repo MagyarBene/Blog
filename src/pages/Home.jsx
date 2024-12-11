@@ -20,11 +20,11 @@ export const Home = () => {
   return (
     <div className='MainHome'>
       <div>
-      <div class="keyboard">
-        <span class="key">B</span>
-        <span class="key">L</span>
-        <span class="key">O</span>
-        <span class="key">G</span>
+      <div className="keyboard">
+        <span className="key">B</span>
+        <span className="key">L</span>
+        <span className="key">O</span>
+        <span className="key">G</span>
       </div>
       </div>
       <div className='Homepage'>
