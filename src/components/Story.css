@@ -1,0 +1,9 @@
+.rse-ce{
+    background-color: gray;
+    min-height: 400px !important; 
+    max-width: 600px !important;
+    max-height: 600px !important;
+}
+.rsw-editor{
+    max-width: 600px !important;
+}

@@ -8,6 +8,11 @@ import {Story} from '../components/Story'
 import {uploadFile} from '../utility/uploadFile'
 import { PropagateLoader } from 'react-spinners'
 import { AddPost } from '../utility/cruduUtility'
+import { CategContext } from '../context/CategContext'
+import {DropdownComp } from '../components/DropdownComp'
+import {Alert} from '../components/Alert'
+import { center } from '@cloudinary/url-gen/qualifiers/textAlignment'
+import { max } from '@cloudinary/url-gen/actions/roundCorners'
 
 
 const midleStyle={
@@ -17,15 +22,24 @@ const midleStyle={
   transform:'translate(-50%,-50%)',
   display:'flex',
   flexdirection:"row",
+  height:600,
+  border:"2px solid white",
+  margin:20,
+  padding:30,
+  paddingLeft:40,
 }
 
 export  const AddEditPost = () => {
+ 
+  
+  const {categories}=useContext(CategContext)
   const {user} = useContext(UserContext)
   const [loading, setLoading] = useState(false)
   const [uploaded, setUpLoaded] = useState(false)
   const [photo, setPhoto] = useState(null)
   const [story, setStory] = useState(null)
-  const {register,handleSubmit, formState: { errors }} = useForm()
+  const [selCateg,setSelCateg] = useState(null)
+  const {register,handleSubmit, formState: { errors }, reset} = useForm()
 
   const onSubmit=async (data)=>{
     setLoading(true)
@@ -37,7 +51,8 @@ export  const AddEditPost = () => {
         story,
         author:user.displayName,
         userId:user.uid,
-        category:"Rajz"
+        category:selCateg,
+
       }
       
       const file=data?.file ? data?.file[0] : null
@@ -50,6 +65,9 @@ export  const AddEditPost = () => {
       console.log('postData:', newPostData);
       AddPost(newPostData)
       setUpLoaded(true)
+      reset()
+      setPhoto(null)
+      setStory(null)
     } catch (error) {
         console.log(error);
         
@@ -58,21 +76,35 @@ export  const AddEditPost = () => {
     }
     
   }
+//console.log(story);
 
 
 
   if (!user) return <Home/>
   return (
     <div className='page' >
-    <div className='profilepage'  style={midleStyle}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+      <div className="keyboard post">
+        <span className="key">Ú</span>
+        <span className="key">j</span>
+        <span className="key">P</span>
+        <span className="key">o</span>
+        <span className="key">s</span>
+        <span className="key">z</span>
+        <span className="key">t</span>
+      </div>
+      </div>
+    <div className='profilepage addBox'  style={midleStyle}>
+    <Story  setStory={setStory} uploaded={uploaded}/>
+      <form style={{margin:20}} onSubmit={handleSubmit(onSubmit)}>
           
         <div>
           <h5>A bejegyzés címe: </h5>
           <br />
           <input {...register('title',{required:true})} type='text' />
           <p className='text-danger'>{errors?.title && 'A cím megadása kötelező'}</p>
-          <Story setStory={setStory} uploaded={uploaded}/>
+          <DropdownComp categories={categories} selCateg={selCateg} setSelCateg={setSelCateg}/>
+          
         </div>
         <div >
           <p></p>
@@ -97,12 +129,17 @@ export  const AddEditPost = () => {
            
            <p className='text-danger'>{errors?.file?.message}</p>
         </div>
-        <button>Mentés</button>
+        <button disabled={!selCateg || !story}>Mentés</button>
+        <div>
+          {photo&& <img  style={{maxHeight:"250px", maxWidth:"250px", margin:20}} src={photo}/>}
+        </div>
+        
     </form>
-    <p></p>
-    {loading && <PropagateLoader />}
-    {photo&& <img style={{maxHeight:150, maxWidth:200}} src={photo}/>}
+      {loading && <PropagateLoader />}
+      {uploaded && <Alert txt='Sikeres feltöltés!'/>}
+      
     </div>
+    
   </div>
   )
 }

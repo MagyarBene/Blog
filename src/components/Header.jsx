@@ -94,7 +94,10 @@ export const Header = () => {
                 <NavLink className='nav-link' to='/profile'>Személyes adatok</NavLink>
                 </DropdownItem>
               <DropdownItem divider />
-              <DropdownItem>Fiók törlése</DropdownItem>
+              <DropdownItem>
+              <NavLink className='nav-link' to='/delete'>Felhasználói fiók törlése</NavLink>
+                
+              </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
           </>

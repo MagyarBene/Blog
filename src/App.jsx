@@ -10,6 +10,8 @@ import { Profile } from './pages/Profile'
 import { Admin } from './pages/Admin'
 import { Header } from './components/Header'
 import { NotFound } from './pages/NotFound'
+import { DeleteAcc } from './pages/DeleteAcc'
+
 
 const router = createBrowserRouter([
   {element:<Header/>,
@@ -24,6 +26,7 @@ const router = createBrowserRouter([
       {path:'/profile',element:<Profile />},
       {path:'/admin',element:<Admin />},
       {path:'*',element:<NotFound />},
+      {path:'/delete',element:<DeleteAcc/>},
     ]
   }
 ],

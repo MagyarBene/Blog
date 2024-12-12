@@ -29,7 +29,7 @@ export const Home = () => {
       </div>
       <div className='Homepage'>
       {categories && categories.map(obj=>
-        <Card key={obj.id} style={{maxHeight:600, maxWidth:400,border:"0.5px solid black"}} inverse>
+        <Card className='card' key={obj.id} style={{maxHeight:600, maxWidth:400,border:"0.5px solid black"}} inverse>
           <CardImg alt="Card image cap" src={obj.photo}
             style={{
               height: 600,

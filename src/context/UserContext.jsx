@@ -1,6 +1,6 @@
 import React from "react";
 import { auth } from "../utility/firebaseApp";
-import {createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile} from 'firebase/auth'
+import {createUserWithEmailAndPassword, deleteUser, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile} from 'firebase/auth'
 import { createContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -76,10 +76,21 @@ export const UserProvider=({children})=>{
         }
     }
 
+    const deleteAccount=async ()=>{
+        try {
+            await deleteUser(auth.currentUser)
+            console.log('fiók törölve');
+            
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
+
 
 
     return(
-        <UserContext.Provider value={{user, signInUser, logoutUser, msg, setMsg,signUpUser, resetPassword, updateUser}}>
+        <UserContext.Provider value={{user, signInUser, logoutUser, msg, setMsg,signUpUser, resetPassword, updateUser, deleteAccount}}>
             {children}
         </UserContext.Provider>
     )
