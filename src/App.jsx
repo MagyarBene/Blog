@@ -11,6 +11,7 @@ import { Admin } from './pages/Admin'
 import { Header } from './components/Header'
 import { NotFound } from './pages/NotFound'
 import { DeleteAcc } from './pages/DeleteAcc'
+import { SinglePost } from './pages/SinglePost'
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       {path:'/admin',element:<Admin />},
       {path:'*',element:<NotFound />},
       {path:'/delete',element:<DeleteAcc/>},
+      {path:'/singlepost/:id',element:<SinglePost/>},
     ]
   }
 ],

@@ -43,7 +43,7 @@ export  const AddEditPost = () => {
 
   const onSubmit=async (data)=>{
     setLoading(true)
-    console.log(data.displayName);
+    //console.log(data.displayName);
     try {
       console.log(data);
       let newPostData={
@@ -52,6 +52,7 @@ export  const AddEditPost = () => {
         author:user.displayName,
         userId:user.uid,
         category:selCateg,
+        likes:[]
 
       }
       

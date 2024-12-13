@@ -2,29 +2,40 @@ import React from 'react'
 import { Header } from '../components/Header'
 import { useContext } from 'react'
 import { CategContext } from '../context/CategContext'
-import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { readPosts } from '../utility/cruduUtility'
+import { CardContainer } from '../components/CardContainer'
+import { Categories } from '../components/Categories'
+import { useSearchParams } from 'react-router-dom'
+
 
 export const Posts = () => {
-  const {categories}=useContext(CategContext)
+  const [searchParams]=useSearchParams()
+  const [posts, setPosts]=useState(null)
+  const [selectedCateg, setSelectegCateg]=useState(searchParams.get('ctg') ? [searchParams.get('ctg')] : [])
+  //console.log(searchParams.get('ctg'));
+  //console.log(selectedCateg);
+  
+  
+
+
+  useEffect(()=>{
+    readPosts(setPosts, selectedCateg)
+  },[selectedCateg])
+  
   return (
-    <div className='Homepage'>
-    {categories && categories.map(obj=>
-      <Card className='card' key={obj.id} style={{maxHeight:600, maxWidth:400,border:"0.5px solid black"}} inverse>
-        <CardImg alt="Card image cap" src={obj.photo}
-          style={{
-            height: 600,
-            maxWidth:300,
-          }}
-          width="100%"
-        />
-        <CardImgOverlay>
-          <CardTitle tag="h5">
-            {obj.name}
-          </CardTitle>
-        </CardImgOverlay>
-      </Card>
-    )}
-  </div>
+    <div className='page'>
+      <div className='categcont'>
+        <Categories selectedCateg={selectedCateg} setSelectedCateg={setSelectegCateg}/> 
+    </div>
+    <div >
+        <CardContainer posts={posts} setPosts={setPosts} />
+    
+    </div>
+    </div>
+    
+    
   )
 }
 
