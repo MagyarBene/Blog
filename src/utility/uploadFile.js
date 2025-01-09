@@ -16,6 +16,7 @@ export const uploadFile=async (file)=>{
     }
 }
 
+const url="https://blog-server-1-0xfa.onrender.com/post/"
 export const delPhoto=async (id)=>{
     try{
         await axios.delete(url+id)
