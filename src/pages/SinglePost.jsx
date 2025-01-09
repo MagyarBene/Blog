@@ -13,6 +13,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { Edit } from '@mui/icons-material'
 import {Alert} from '../components/Alert'
 
+
 export const SinglePost = () => {
   const {user}=useContext(UserContext)
     const [post,setPost]=useState(null)
@@ -21,7 +22,18 @@ export const SinglePost = () => {
     const confirm=useConfirm()
     const params=useParams()
     console.log(params);
-
+    
+    const midleStyle={
+      width:'600px',
+      height:'700px',
+      position:'absolute',
+      top:'50%',
+      left:'50%',
+      transform:'translate(-50%,-50%)',
+      border:'2px solid black',
+      padding:'20px',
+    }
+    
   
     useEffect(()=>{
         readPost(params.id,setPost)
@@ -54,8 +66,9 @@ export const SinglePost = () => {
 
   return (
     <div className='page'>
-      {post && <>
-      <img src={post.photo['url']} alt={post.title} style={{maxHeight:'300px', maxWidth:'400px'}} />
+      <div style={midleStyle}>
+         {post && <>
+      <img src={post.photo['url']} alt={post.title} style={{maxHeight:'200px', maxWidth:'300px'}} />
       <p>{parse(post.story)}</p>
       </>}
         <button onClick={()=>navigate('/posts')}>Vissza...  </button>
@@ -68,10 +81,12 @@ export const SinglePost = () => {
         }
         <div>
           <button><ThumbUpIcon onClick={handleLikes}/></button>
-          {post && <span>Likes nr.:{post?.likes.length}</span>}
+          {post && <span>Likeok: {post?.likes.length}</span>}
         </div>
         
         {txt && <Alert txt={txt} err={false}/>}
+      </div>
+     
     </div>
   )
 }
