@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { deletePost, readPost } from '../utility/cruduUtility'
+import { deletePost, readPost, toggleLikes } from '../utility/cruduUtility'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import parse from 'html-react-parser';
@@ -9,10 +9,14 @@ import { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
 import { useConfirm } from 'material-ui-confirm'
 import { delPhoto } from '../utility/uploadFile'
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import { Edit } from '@mui/icons-material'
+import {Alert} from '../components/Alert'
 
 export const SinglePost = () => {
   const {user}=useContext(UserContext)
     const [post,setPost]=useState(null)
+    const [txt,setTxt]=useState(null)
     const navigate=useNavigate()
     const confirm=useConfirm()
     const params=useParams()
@@ -41,6 +45,11 @@ export const SinglePost = () => {
           
       }    
   }
+
+  const handleLikes=()=>{
+    if(!user) setTxt("Csak bejelentkezett felhasználók likeolhatnak!")
+      else toggleLikes(user.uid,post.id)
+  }
     
 
   return (
@@ -49,11 +58,20 @@ export const SinglePost = () => {
       <img src={post.photo['url']} alt={post.title} style={{maxHeight:'300px', maxWidth:'400px'}} />
       <p>{parse(post.story)}</p>
       </>}
-        <button onClick={()=>navigate('/posts')}>Vissza lépek</button>
+        <button onClick={()=>navigate('/posts')}>Vissza...  </button>
         {user && post && (user.uid==post.userId) &&
-          <button><DeleteIcon onClick={handleDelete}/></button>
+        <>
+          <button><DeleteIcon onClick={handleDelete}/></button> 
+          <button><Edit/></button>
+        </>
+          
         }
+        <div>
+          <button><ThumbUpIcon onClick={handleLikes}/></button>
+          {post && <span>Likes nr.:{post?.likes.length}</span>}
+        </div>
         
+        {txt && <Alert txt={txt} err={false}/>}
     </div>
   )
 }

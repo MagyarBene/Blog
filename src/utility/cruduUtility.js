@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, onSnapshot, orderBy, query, serverTimestamp, where } from "firebase/firestore"
+import { addDoc, collection, deleteDoc, doc, getDoc, onSnapshot, orderBy, query, serverTimestamp, updateDoc, where } from "firebase/firestore"
 import { db } from "./firebaseApp"
 
 
@@ -25,6 +25,7 @@ export const readPosts=(setPosts, selectedCateg)=>{
     query(collectionRef, where('category', 'in', selectedCateg))
     const unsubscirbe =  onSnapshot(q,(snapshot)=>{
         setPosts(snapshot.docs.map(doc=>({...doc.data(),id:doc.id})))
+        
     })
     return unsubscirbe;
 }
@@ -32,11 +33,29 @@ export const readPosts=(setPosts, selectedCateg)=>{
 
 export const readPost=async (id,setPost)=>{
     const docRef=doc(db,'posts',id)
-    const docSnap=await getDoc(docRef)
-    setPost({...docSnap.data(),id:docSnap.id})
+    //const docSnap=await getDoc(docRef)
+    const unsubscirbe=onSnapshot(docRef, (snapshot)=>{
+        setPost({...snapshot.data(),id:snapshot.id})
+        return unsubscirbe
+    })
+   
 }
 
 export const deletePost= async (id)=>{
     const docRef=doc(db,'posts',id)
     await deleteDoc(docRef)
+}
+
+export const toggleLikes=async (uid,id)=>{
+    const docRef=doc(db,'posts',id)
+    const docSnap=await getDoc(docRef)
+    const likesArr=docSnap.data().likes || []
+    if(likesArr.includes(uid)){
+        //console.log('unlike');
+        await updateDoc(docRef,{likes:likesArr.filter(p_id=>p_id!=uid)})
+        
+    }else{
+        //console.log('like');
+        await updateDoc(docRef,{likes:[...likesArr,uid]})
+    }
 }
