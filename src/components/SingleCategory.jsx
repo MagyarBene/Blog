@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-export const SingleCategory = ({name, selectedCateg, setSelectedCateg}) => {
+export const SingleCategory = ({name, setSelectedCateg}) => {
     const [selected, setSelected] = useState(false)
     const [searchParams]=useSearchParams()
     console.log(searchParams.get('ctg'));

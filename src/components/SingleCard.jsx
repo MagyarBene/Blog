@@ -82,7 +82,7 @@ export const SingleCard = ({author, category, title, story, timestamp, userId, p
 
     return (
  
-        <Card  sx={{background:"grey",  maxWidth: 310, maxHeight:600, height:500, width:310, margin:'10px', borderBottom:"1px solid black",}}>
+        <Card  sx={{background:"lightblue",  maxWidth: 310, maxHeight:600, height:500, width:310, margin:'10px', borderBottom:"1px solid black",}}>
           <CardHeader sx={{border:"1px solid black"}}
             avatar={
                 getCategoryIcon() || <DoDisturbIcon/>
@@ -104,8 +104,8 @@ export const SingleCard = ({author, category, title, story, timestamp, userId, p
             alt={title}
            style={{maxWidth:300, margin:'auto', border:"2px solid black"}}/>
           <CardContent style={{borderTop:"2px solid black", }} >
-            <Typography  variant="body2"  sx={{ color: 'text.secondary', }}>
-                {sanitizeHtml(story)}
+            <Typography  variant="body2"  sx={{ color: 'text.secondary', fontSize:'12px' }}>
+                {sanitizeHtml(story).substring(0, 70)+"..."}
             </Typography>
           </CardContent>
           <CardActions  disableSpacing>

@@ -8,17 +8,48 @@
     background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
+.ah{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: fit-content;
+  word-wrap: break-word;
+
+}
 .categcont{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin: auto;
   justify-content: center;
   align-items: center;
   gap: 10px;
   color: white;
 }
+.form{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.posts{
+  flex-direction: column;
+  flex-wrap: wrap;
+}
 .post{
   color: #6dd5ed;
+}
+.single{
+  gap: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.gombok{
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 .delacc{
   border: 2px solid white;
@@ -31,8 +62,50 @@
   align-items: center;
   
 }
+.na{
+ 
+}
+.ujposzt{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: fit-content;
+  max-width: max-content;
+  word-wrap: break-word;
+}
+.singlePost{
+  background-color: #0F2027;  
+  max-width: 900px;
+}
 .addBox{
   box-shadow: 10px 10px 5px black;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+
+}
+.editor{
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+}
+.poststory{
+  max-height: fit-content;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  text-align: justify !important;
+  overflow-wrap: break-word;
+  max-height: 1200px;
+
+}
+.fp{
+  text-align: justify !important;
+  max-height: 1200px;
+  overflow-wrap: break-word;
+  width: 800px;
+  text-align: center;
 }
 .postCard{
   background-color: rgb(41, 40, 40, 0.8);
@@ -50,6 +123,7 @@
     align-items: center;
     gap: 20px;
     text-align: center;
+    flex-wrap: wrap;
 }
 .profilepage{
   border-radius: 10px;

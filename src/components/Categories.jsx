@@ -8,7 +8,8 @@ import { SingleCategory } from './SingleCategory'
 
 export const Categories = ({selectedCateg, setSelectedCateg}) => {
     const {categories} = useContext(CategContext)
-
+    console.log(selectedCateg);
+    
   
 
   return (

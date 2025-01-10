@@ -11,7 +11,7 @@ import { useEffect } from 'react'
 import { extractUrlAndId } from '../utility/utils'
 
 const midleStyle={
-  width:'350px',
+  width:'300px',
   height:'550px',
   position:'absolute',
   top:'50%',
