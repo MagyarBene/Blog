@@ -30,6 +30,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  padding-right: 0px;
 }
 .posts{
   flex-direction: column;
@@ -62,9 +63,23 @@
   align-items: center;
   
 }
-.na{
+.rsw-editor{
+  max-width: 320px !important;
+  max-height: 500px !important;
+  padding: 0px;
  
 }
+.rsw-ce{
+  max-height: 150px !important;
+  max-block-size: 300px;
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
 .ujposzt{
   display: flex;
   flex-direction: column;
@@ -82,8 +97,7 @@
   flex-wrap: wrap;
   display: flex;
   flex-direction: column;
-  max-width: 900px;
-
+  padding: 0px;
 }
 .editor{
   flex-wrap: wrap;
@@ -212,6 +226,12 @@
 
 .card:hover {
   transform: translateY(-70px);
+}
+.keyboard{
+  display: block;
+  margin: auto;
+  justify-content: center;
+
 }
 
 

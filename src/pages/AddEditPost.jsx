@@ -21,13 +21,11 @@ const midleStyle = {
   left: '50%',
   transform: 'translate(-50%,-50%)',
   display: 'flex',
-  flexdirection: "row",
+  flexdirection: "column",
   maxWidth: 900,
   maxHeight: 600,
   border: "2px solid white",
   margin: 20,
-  padding: 30,
-  paddingLeft: 40,
 }
 
 export const AddEditPost = () => {
@@ -124,7 +122,7 @@ export const AddEditPost = () => {
   if (!user) return <Home />
   return (
     <div className='page' >
-      <div className="keyboard post">
+      <div className="keyboard post" style={{marginLeft:40}}>
         <span className="key">P</span>
         <span className="key">o</span>
         <span className="key">s</span>
@@ -133,25 +131,21 @@ export const AddEditPost = () => {
       </div>
       <div>
       </div>
-      <div className='profilepage addBox' style={midleStyle}>
+      <div  className='profilepage addBox' style={midleStyle}>
         <div className='form'>
           <Story setStory={setStory} uploaded={uploaded} story={story} />
-          <form className='form' style={{ margin: 20 }} onSubmit={handleSubmit(onSubmit)}>
+          <form className='form' style={{ margin: 10 }} onSubmit={handleSubmit(onSubmit)}>
 
             <div>
-              <h5>A bejegyzés címe: </h5>
               <br />
-              <input  {...register('title', { required:!params.id })} type='text' />
+              <input  {...register('title', { required:!params.id })} type='text' placeholder='Bejegyzés címe:' />
               <p className='text-danger'>{errors?.title && 'A cím megadása kötelező'}</p>
               <DropdownComp categories={categories} selCateg={selCateg} setSelCateg={setSelCateg} />
 
             </div>
             <div >
-              <p></p>
-              <h5>Kép feltöltése:</h5>
-              <p></p>
               <div className='na' >
-                <input disabled={params.id}  {...register('file',params.id?{}: {
+                <input placeholder='Kép feltöltése:' disabled={params.id}  {...register('file',params.id?{}: {
                   validate: (value) => {
                     if (!value[0]) return true
                     const acceptedFormats = ['jpg', 'png', 'svg']
@@ -171,7 +165,7 @@ export const AddEditPost = () => {
             </div>
             <button disabled={!selCateg || !story}>Mentés</button>
             <div>
-              {photo && <img style={{ maxHeight: "200px", maxWidth: "200px", margin: 20 }} src={photo} />}
+              {photo && <img style={{ maxHeight: "150px", maxWidth: "150px", margin: 20 }} src={photo} />}
             </div>
 
           </form>

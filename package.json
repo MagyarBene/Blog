@@ -17,7 +17,7 @@
     "@mui/icons-material": "^6.2.0",
     "@mui/material": "^6.2.0",
     "axios": "^1.7.9",
-    "blog": "link:",
+    "blog": "file:",
     "bootstrap": "^5.3.3",
     "firebase": "^11.0.2",
     "html-react-parser": "^5.2.1",
